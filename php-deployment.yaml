@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.14.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: php
+  name: php
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: php
+    spec:
+      containers:
+      - env:
+        - name: DB_DRIVER
+          value: mysql
+        - name: DB_HOST
+          value: mariadb
+        - name: DB_NAME
+          value: drupal
+        - name: DB_PASS
+          value: drupal
+        - name: DB_USER
+          value: drupal
+        - name: PHP_FPM_USER
+          value: dsplat
+        - name: PHP_FPM_GROUP
+          value: dsplat
+        - name: PHP_FPM_CLEAR_ENV
+          value: "no"
+        - name: SITE_NAME
+          value: test
+        image: registry.warecorp.com/nvtest/nv-drupal-php-code:5
+        name: php
+        resources: {}
+        volumeMounts:
+        - mountPath: /mnt/files
+          name: drupal-pv
+      restartPolicy: Always
+      volumes:
+      - name: drupal-pv
+        persistentVolumeClaim:
+          claimName: drupal-pvc
+status: {}

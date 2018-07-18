@@ -1,0 +1,28 @@
+version: "2"
+
+services:
+  jenkins:
+    image: nv-jenkins
+    ports:
+      - 8080:8080
+    # depends_on:
+    #   - mariadb
+    # environment:
+    #   # NGINX_STATIC_CONTENT_OPEN_FILE_CACHE: "on"
+    #   NGINX_ERROR_LOG_LEVEL: "debug"
+    #   NGINX_USER: dsplat
+    #   NGINX_BACKEND_HOST: php
+    #   NGINX_SERVER_ROOT: /var/www/html
+    # depends_on:
+    #   - php
+    volumes:
+      - jenkins-home:/var/jenkins_home
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - 8025:8025
+
+#   codebase:
+
+volumes:
+  jenkins-home:
