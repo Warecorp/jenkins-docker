@@ -15,6 +15,7 @@ services:
     #   NGINX_SERVER_ROOT: /var/www/html
     # depends_on:
     #   - php
+    
     volumes:
       - jenkins-home:/var/jenkins_home
   # mailhog:
