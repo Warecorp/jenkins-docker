@@ -1,4 +1,4 @@
-from jenkins/jenkins:lts
+FROM jenkins/jenkins:lts
 
 # Distributed Builds plugins
 RUN /usr/local/bin/install-plugins.sh bitbucket
