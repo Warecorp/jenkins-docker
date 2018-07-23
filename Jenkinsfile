@@ -1,5 +1,5 @@
 node {
-    def app
+    def jenkins
 
     docker.withRegistry('https://hub.warecorp.com', 'wc-hub') {
 
@@ -13,7 +13,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-    app = docker.build("hub.warecorp.com/jenkins/jenkins", ".")
+    jenkins = docker.build("hub.warecorp.com/jenkins/jenkins", ".")
 
     }
 
@@ -23,8 +23,8 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://hub.warecorp.com/jenkins/jenkins', 'wc-hub') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+            jenkins.push("${env.BUILD_NUMBER}")
+            jenkins.push("latest")
         }
     }
   }
