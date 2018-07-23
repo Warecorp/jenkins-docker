@@ -13,7 +13,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-    app = docker.build("hub.warecorp.com/jenkins/jenkins", "-f ./Dockerfile ./")
+    app = docker.build("hub.warecorp.com/jenkins/jenkins", ".")
 
     }
 
